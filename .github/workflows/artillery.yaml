@@ -27,6 +27,16 @@ jobs:
 
     - name: Run Artillery script
       run: |
-        artillery run artillery.yml
+        artillery run artillery.yml -o report.json
+        artillery report --output report.html report.json
       env:
         CI: true
+
+    - name: Upload Artillery report
+      uses: actions/upload-artifact@v3
+      with:
+        name: artillery-report
+        path: report.html
+
+    - name: Create summary with link to report
+      run: echo "### Artillery Report\n\n[View the report](./report.html)" >> $GITHUB_STEP_SUMMARY
