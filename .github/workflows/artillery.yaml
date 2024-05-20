@@ -37,6 +37,13 @@ jobs:
       with:
         name: artillery-report
         path: report.html
+  deploy:
+    needs: run-artillery
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
 
-    - name: Create summary with link to report
-      run: echo "### Artillery Report\n\n[View the report](./report.html)" >> $GITHUB_STEP_SUMMARY
+    steps:
+    - name: Deploy to GitHub Pages
+      uses: actions/deploy-pages@v1
