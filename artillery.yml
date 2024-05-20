@@ -6,7 +6,7 @@ config:
         headless: true
   phases:
   - duration: 1
-    arrivalRate: 5    
+    arrivalRate: 100    
   processor: "./tests/artillery/login.js"
 scenarios:
   - engine: playwright
