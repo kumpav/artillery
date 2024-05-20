@@ -1,0 +1,14 @@
+config:
+  target: "https://qaomni.annalect.com"
+  engines:
+    playwright:
+      launchOptions:
+        headless: false
+  phases:
+  - duration: 1
+    arrivalRate: 5    
+  processor: "./tests/artillery/login.js"
+scenarios:
+  - engine: playwright
+    testFunction: "artilleryScript"
+  

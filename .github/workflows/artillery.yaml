@@ -1,0 +1,31 @@
+name: Run Artillery with Playwright
+
+on:
+  workflow_dispatch:
+
+jobs:
+  run-artillery:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'
+
+    - name: Install dependencies
+      run: |
+        npm install -g artillery
+        npm install -g playwright
+
+    - name: Install Playwright browsers
+      run: npx playwright install
+
+    - name: Run Artillery script
+      run: |
+        artillery run artillery.yml
+      env:
+        CI: true
