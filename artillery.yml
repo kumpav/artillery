@@ -3,7 +3,7 @@ config:
   engines:
     playwright:
       launchOptions:
-        headless: false
+        headless: true
   phases:
   - duration: 1
     arrivalRate: 5    
