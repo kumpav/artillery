@@ -1,0 +1,310 @@
+{
+  "aggregate": {
+    "counters": {
+      "vusers.created_by_name.0": 1,
+      "vusers.created": 1,
+      "browser.page.codes.200": 30,
+      "browser.http_requests": 33,
+      "browser.page.codes.204": 3,
+      "vusers.failed": 0,
+      "vusers.completed": 1
+    },
+    "rates": {},
+    "firstCounterAt": 1716264044296,
+    "firstHistogramAt": 1716264047220,
+    "lastCounterAt": 1716264047624,
+    "lastHistogramAt": 1716264047624,
+    "firstMetricAt": 1716264044296,
+    "lastMetricAt": 1716264047624,
+    "period": 1716264040000,
+    "summaries": {
+      "browser.page.FCP.https://qaomni.annalect.com/login": {
+        "min": 2679.5,
+        "max": 2679.5,
+        "count": 1,
+        "mean": 2679.5,
+        "p50": 2671,
+        "median": 2671,
+        "p75": 2671,
+        "p90": 2671,
+        "p95": 2671,
+        "p99": 2671,
+        "p999": 2671
+      },
+      "browser.page.TTFB.https://qaomni.annalect.com/login": {
+        "min": 373,
+        "max": 373,
+        "count": 1,
+        "mean": 373,
+        "p50": 376.2,
+        "median": 376.2,
+        "p75": 376.2,
+        "p90": 376.2,
+        "p95": 376.2,
+        "p99": 376.2,
+        "p999": 376.2
+      },
+      "browser.page.LCP.https://qaomni.annalect.com/login": {
+        "min": 2933.7,
+        "max": 2933.7,
+        "count": 1,
+        "mean": 2933.7,
+        "p50": 2951.9,
+        "median": 2951.9,
+        "p75": 2951.9,
+        "p90": 2951.9,
+        "p95": 2951.9,
+        "p99": 2951.9,
+        "p999": 2951.9
+      },
+      "browser.page.FID.https://qaomni.annalect.com/login": {
+        "min": 3.3,
+        "max": 3.3,
+        "count": 1,
+        "mean": 3.3,
+        "p50": 3.3,
+        "median": 3.3,
+        "p75": 3.3,
+        "p90": 3.3,
+        "p95": 3.3,
+        "p99": 3.3,
+        "p999": 3.3
+      },
+      "vusers.session_length": {
+        "min": 3327.6,
+        "max": 3327.6,
+        "count": 1,
+        "mean": 3327.6,
+        "p50": 3328.3,
+        "median": 3328.3,
+        "p75": 3328.3,
+        "p90": 3328.3,
+        "p95": 3328.3,
+        "p99": 3328.3,
+        "p999": 3328.3
+      }
+    },
+    "histograms": {
+      "browser.page.FCP.https://qaomni.annalect.com/login": {
+        "min": 2679.5,
+        "max": 2679.5,
+        "count": 1,
+        "mean": 2679.5,
+        "p50": 2671,
+        "median": 2671,
+        "p75": 2671,
+        "p90": 2671,
+        "p95": 2671,
+        "p99": 2671,
+        "p999": 2671
+      },
+      "browser.page.TTFB.https://qaomni.annalect.com/login": {
+        "min": 373,
+        "max": 373,
+        "count": 1,
+        "mean": 373,
+        "p50": 376.2,
+        "median": 376.2,
+        "p75": 376.2,
+        "p90": 376.2,
+        "p95": 376.2,
+        "p99": 376.2,
+        "p999": 376.2
+      },
+      "browser.page.LCP.https://qaomni.annalect.com/login": {
+        "min": 2933.7,
+        "max": 2933.7,
+        "count": 1,
+        "mean": 2933.7,
+        "p50": 2951.9,
+        "median": 2951.9,
+        "p75": 2951.9,
+        "p90": 2951.9,
+        "p95": 2951.9,
+        "p99": 2951.9,
+        "p999": 2951.9
+      },
+      "browser.page.FID.https://qaomni.annalect.com/login": {
+        "min": 3.3,
+        "max": 3.3,
+        "count": 1,
+        "mean": 3.3,
+        "p50": 3.3,
+        "median": 3.3,
+        "p75": 3.3,
+        "p90": 3.3,
+        "p95": 3.3,
+        "p99": 3.3,
+        "p999": 3.3
+      },
+      "vusers.session_length": {
+        "min": 3327.6,
+        "max": 3327.6,
+        "count": 1,
+        "mean": 3327.6,
+        "p50": 3328.3,
+        "median": 3328.3,
+        "p75": 3328.3,
+        "p90": 3328.3,
+        "p95": 3328.3,
+        "p99": 3328.3,
+        "p999": 3328.3
+      }
+    }
+  },
+  "intermediate": [
+    {
+      "counters": {
+        "vusers.created_by_name.0": 1,
+        "vusers.created": 1,
+        "browser.page.codes.200": 30,
+        "browser.http_requests": 33,
+        "browser.page.codes.204": 3,
+        "vusers.failed": 0,
+        "vusers.completed": 1
+      },
+      "rates": {},
+      "firstCounterAt": 1716264044296,
+      "firstHistogramAt": 1716264047220,
+      "lastCounterAt": 1716264047624,
+      "lastHistogramAt": 1716264047624,
+      "firstMetricAt": 1716264044296,
+      "lastMetricAt": 1716264047624,
+      "period": "1716264040000",
+      "summaries": {
+        "browser.page.FCP.https://qaomni.annalect.com/login": {
+          "min": 2679.5,
+          "max": 2679.5,
+          "count": 1,
+          "mean": 2679.5,
+          "p50": 2671,
+          "median": 2671,
+          "p75": 2671,
+          "p90": 2671,
+          "p95": 2671,
+          "p99": 2671,
+          "p999": 2671
+        },
+        "browser.page.TTFB.https://qaomni.annalect.com/login": {
+          "min": 373,
+          "max": 373,
+          "count": 1,
+          "mean": 373,
+          "p50": 376.2,
+          "median": 376.2,
+          "p75": 376.2,
+          "p90": 376.2,
+          "p95": 376.2,
+          "p99": 376.2,
+          "p999": 376.2
+        },
+        "browser.page.LCP.https://qaomni.annalect.com/login": {
+          "min": 2933.7,
+          "max": 2933.7,
+          "count": 1,
+          "mean": 2933.7,
+          "p50": 2951.9,
+          "median": 2951.9,
+          "p75": 2951.9,
+          "p90": 2951.9,
+          "p95": 2951.9,
+          "p99": 2951.9,
+          "p999": 2951.9
+        },
+        "browser.page.FID.https://qaomni.annalect.com/login": {
+          "min": 3.3,
+          "max": 3.3,
+          "count": 1,
+          "mean": 3.3,
+          "p50": 3.3,
+          "median": 3.3,
+          "p75": 3.3,
+          "p90": 3.3,
+          "p95": 3.3,
+          "p99": 3.3,
+          "p999": 3.3
+        },
+        "vusers.session_length": {
+          "min": 3327.6,
+          "max": 3327.6,
+          "count": 1,
+          "mean": 3327.6,
+          "p50": 3328.3,
+          "median": 3328.3,
+          "p75": 3328.3,
+          "p90": 3328.3,
+          "p95": 3328.3,
+          "p99": 3328.3,
+          "p999": 3328.3
+        }
+      },
+      "histograms": {
+        "browser.page.FCP.https://qaomni.annalect.com/login": {
+          "min": 2679.5,
+          "max": 2679.5,
+          "count": 1,
+          "mean": 2679.5,
+          "p50": 2671,
+          "median": 2671,
+          "p75": 2671,
+          "p90": 2671,
+          "p95": 2671,
+          "p99": 2671,
+          "p999": 2671
+        },
+        "browser.page.TTFB.https://qaomni.annalect.com/login": {
+          "min": 373,
+          "max": 373,
+          "count": 1,
+          "mean": 373,
+          "p50": 376.2,
+          "median": 376.2,
+          "p75": 376.2,
+          "p90": 376.2,
+          "p95": 376.2,
+          "p99": 376.2,
+          "p999": 376.2
+        },
+        "browser.page.LCP.https://qaomni.annalect.com/login": {
+          "min": 2933.7,
+          "max": 2933.7,
+          "count": 1,
+          "mean": 2933.7,
+          "p50": 2951.9,
+          "median": 2951.9,
+          "p75": 2951.9,
+          "p90": 2951.9,
+          "p95": 2951.9,
+          "p99": 2951.9,
+          "p999": 2951.9
+        },
+        "browser.page.FID.https://qaomni.annalect.com/login": {
+          "min": 3.3,
+          "max": 3.3,
+          "count": 1,
+          "mean": 3.3,
+          "p50": 3.3,
+          "median": 3.3,
+          "p75": 3.3,
+          "p90": 3.3,
+          "p95": 3.3,
+          "p99": 3.3,
+          "p999": 3.3
+        },
+        "vusers.session_length": {
+          "min": 3327.6,
+          "max": 3327.6,
+          "count": 1,
+          "mean": 3327.6,
+          "p50": 3328.3,
+          "median": 3328.3,
+          "p75": 3328.3,
+          "p90": 3328.3,
+          "p95": 3328.3,
+          "p99": 3328.3,
+          "p999": 3328.3
+        }
+      }
+    }
+  ]
+}
