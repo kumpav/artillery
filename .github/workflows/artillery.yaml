@@ -21,6 +21,7 @@ jobs:
         npm install -g artillery
         npm install -g playwright
         npm install @playwright/test
+        npm install gh-pages --save-dev
 
     - name: Install Playwright browsers
       run: npx playwright install
