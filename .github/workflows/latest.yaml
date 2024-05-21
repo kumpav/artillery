@@ -55,9 +55,3 @@ jobs:
           npx gh-pages -d reports -u "github-actions-bot <support+actions@github.com>"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Print report URL
-        run: echo "Report URL: https://${{ github.repository_owner }}.github.io/${{ github.repository }}/reports/${{ env.timestamp }}/report.html" >> $GITHUB_ENV
-
-      - name: Add URL to workflow summary
-        run: echo "Report URL: [Report]($GITHUB_ENV/reports/${{ env.timestamp }}/report.html)" >> $GITHUB_STEP_SUMMARY
