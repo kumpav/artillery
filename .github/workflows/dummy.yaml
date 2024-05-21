@@ -32,7 +32,7 @@ jobs:
     - name: Run Artillery script
       run: |
         artillery run artillery.yml -o report.json
-        artillery report --output report.html report.json
+        artillery report --output index.html report.json
       env:
         CI: true
 
@@ -47,6 +47,6 @@ jobs:
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
         git config --global user.name "github-actions[bot]"
         git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
-        npx gh-pages -d . -u "github-actions-bot <support+actions@github.com>" --src report.html
+        npx gh-pages -d . -u "github-actions-bot <support+actions@github.com>" --src index.html
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
