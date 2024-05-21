@@ -12,3 +12,6 @@
     "@types/node": "^20.12.12"
   }
 }
+"scripts": {
+  "deploy": "gh-pages -d build"
+}
