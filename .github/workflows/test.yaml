@@ -1,16 +1,16 @@
-name: Run Artillery with Playwright[workflow dispatch]
+name: Run Artillery with Playwright
 
 on:
   workflow_dispatch:
     inputs:
       duration:
-        description: 'Duration of the test phase'
+        description: 'Ramp Up Period'
         required: false
-        default: 1
+        default: "1"
       arrivalRate:
-        description: 'Arrival rate of the test phase'
+        description: 'Number of Virtual Users'
         required: false
-        default: 1
+        default: "1"
 
 jobs:
   run-artillery:
@@ -42,11 +42,20 @@ jobs:
       run: |
         duration=${{ github.event.inputs.duration }}
         arrivalRate=${{ github.event.inputs.arrivalRate }}
-        sed "s/{{ duration }}/$duration/g; s/{{ arrivalRate }}/$arrivalRate/g" artillery.template.yml > artillery.yml
+
+        if [ ! -f artillery.yml ]; then
+          echo "Artillery template file artillery.yml not found"
+          exit 1
+        fi
+
+        cp artillery.yml temp_artillery.yml
+
+        sed -i "s/{{ duration }}/$duration/g" temp_artillery.yml
+        sed -i "s/{{ arrivalRate }}/$arrivalRate/g" temp_artillery.yml
 
     - name: Run Artillery script
       run: |
-        artillery run artillery.yml -o report.json
+        artillery run temp_artillery.yml -o report.json
         artillery report --output index.html report.json
       env:
         CI: true
