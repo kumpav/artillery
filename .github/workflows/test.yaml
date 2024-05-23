@@ -4,11 +4,11 @@ on:
   workflow_dispatch:
     inputs:
       duration:
-        description: 'Ramp Up Period'
+        description: 'Duration of the test phase'
         required: false
         default: 1
       arrivalRate:
-        description: 'Number of Virtual Users'
+        description: 'Arrival rate of the test phase'
         required: false
         default: 1
 
@@ -37,6 +37,11 @@ jobs:
 
     - name: Install Playwright browsers
       run: npx playwright install
+
+    - name: Debug Inputs
+      run: |
+        echo "Duration: ${{ github.event.inputs.duration }}"
+        echo "Arrival Rate: ${{ github.event.inputs.arrivalRate }}"
 
     - name: Generate Artillery config from template
       run: |
