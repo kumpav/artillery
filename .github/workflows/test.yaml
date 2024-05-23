@@ -6,11 +6,11 @@ on:
       duration:
         description: 'Ramp Up Period'
         required: false
-        default: "1"
+        default: 1
       arrivalRate:
         description: 'Number of Virtual Users'
         required: false
-        default: "1"
+        default: 1
 
 jobs:
   run-artillery:
