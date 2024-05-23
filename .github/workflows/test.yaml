@@ -6,11 +6,11 @@ on:
       duration:
         description: 'Duration of the test phase'
         required: false
-        default: 1
+        default: '1' # Default value as a string
       arrivalRate:
         description: 'Arrival rate of the test phase'
         required: false
-        default: 1
+        default: '1' # Default value as a string
 
 jobs:
   run-artillery:
@@ -57,6 +57,11 @@ jobs:
 
         sed -i "s/{{ duration }}/$duration/g" temp_artillery.yml
         sed -i "s/{{ arrivalRate }}/$arrivalRate/g" temp_artillery.yml
+
+    - name: Validate Artillery config
+      run: |
+        echo "Contents of temp_artillery.yml:"
+        cat temp_artillery.yml
 
     - name: Run Artillery script
       run: |
