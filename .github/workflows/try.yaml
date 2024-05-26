@@ -42,17 +42,24 @@ jobs:
       env:
         CI: true
 
+    - name: Stash changes
+      run: git stash
+
     - name: Checkout and prepare gh-pages branch
       run: |
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
         git config --global user.name "github-actions[bot]"
         git fetch origin gh-pages
         git checkout gh-pages || git checkout --orphan gh-pages
-        git rm -r --cached .  # Remove all files from index
-        git clean -fdx  # Remove all untracked files
+        git rm -rf .  # Force remove all files to clean the working directory
+        git clean -fdx
         echo "reports/*" > .gitignore  # Ensure only reports directory is tracked
         git add .gitignore
         git commit -m "Configure gh-pages branch"
+
+    - name: Apply stashed changes
+      if: success() && steps.stash-changes.outputs.stash
+      run: git stash pop
 
     - name: Copy new reports to gh-pages branch
       run: |
