@@ -33,11 +33,13 @@ jobs:
       run: |
         mkdir -p reports
         for file in *.yml; do
-          test_name=$(basename "$file" .yml)
-          timestamp=$(date +"%Y/%m/%d/%H-%M-%S")
-          mkdir -p "reports/${test_name}/${timestamp}"
-          artillery run "$file" -o "reports/${test_name}/${timestamp}/report.json"
-          artillery report --output "reports/${test_name}/${timestamp}/report.html" "reports/${test_name}/${timestamp}/report.json"
+          if [ -f "$file" ]; then
+            test_name=$(basename "$file" .yml)
+            timestamp=$(date +"%Y/%m/%d/%H-%M-%S")
+            mkdir -p "reports/${test_name}/${timestamp}"
+            artillery run "$file" -o "reports/${test_name}/${timestamp}/report.json"
+            artillery report --output "reports/${test_name}/${timestamp}/report.html" "reports/${test_name}/${timestamp}/report.json"
+          fi
         done
       env:
         CI: true
@@ -63,13 +65,21 @@ jobs:
 
     - name: Copy new reports to gh-pages branch
       run: |
-        cp -r reports/* .
+        if [ -d "reports" ] && [ "$(ls -A reports)" ]; then
+          cp -r reports/* .
+        else
+          echo "No reports found to copy."
+        fi
 
     - name: Commit and push reports to gh-pages branch
       run: |
-        git add reports
-        git commit -m "Add Artillery test reports"
-        git pull --rebase origin gh-pages
-        git push origin gh-pages
+        if [ -d "reports" ] && [ "$(ls -A reports)" ]; then
+          git add reports
+          git commit -m "Add Artillery test reports"
+          git pull --rebase origin gh-pages
+          git push origin gh-pages
+        else
+          echo "No reports to commit."
+        fi
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
