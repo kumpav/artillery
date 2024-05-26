@@ -1,75 +1,62 @@
-name: Artillery Load Test
+name: Run Artillery with Playwright
 
 on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+  workflow_dispatch:
 
 jobs:
-  run-artillery-tests:
+  run-artillery:
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: write  # Ensure the workflow has write permissions to the repository
+
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '14' # or specify the version of Node.js you need
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20'
 
-      - name: Install dependencies
-        run: npm install -g artillery
+    - name: Install dependencies
+      run: |
+        npm install -g artillery
+        npm install -g playwright
+        npm install @playwright/test
+        npm install gh-pages --save-dev
 
-      - name: Create reports directory
-        run: mkdir -p reports
+    - name: Install Playwright browsers
+      run: npx playwright install
 
-      - name: Find Artillery test files
-        id: find-files
-        run: |
-          echo "::set-output name=files::$(find tests -name '*.yml' -print0 | tr '\0' ' ')"
+    - name: Run Artillery scripts
+      run: |
+        mkdir -p reports
+        for file in *.yml; do
+          test_name=$(basename "$file" .yml)
+          timestamp=$(date +"%Y/%m/%d/%H-%M-%S")
+          mkdir -p "reports/${test_name}/${timestamp}"
+          artillery run "$file" -o "reports/${test_name}/${timestamp}/report.json"
+          artillery report --output "reports/${test_name}/${timestamp}/report.html" "reports/${test_name}/${timestamp}/report.json"
+        done
+      env:
+        CI: true
 
-      - name: Run Artillery tests
-        run: |
-          YEAR=$(date +%Y)
-          MONTH=$(date +%m)
-          DAY=$(date +%d)
-          TIME=$(date +%H%M%S)
-          BASE_DIR=reports/$YEAR/$MONTH/$DAY/$TIME
-          mkdir -p $BASE_DIR
-          for file in ${{ steps.find-files.outputs.files }}; do
-            base_name=$(basename $file .yml)
-            test_dir=$BASE_DIR/$base_name
-            mkdir -p $test_dir
-            echo "Running test: $file"
-            artillery run $file -o $test_dir/${base_name}.json
-            artillery report --output $test_dir/${base_name}.html $test_dir/${base_name}.json
-          done
-          echo "::set-output name=report_dir::$BASE_DIR"
+    - name: Checkout gh-pages branch
+      run: |
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        git config --global user.name "github-actions[bot]"
+        git fetch origin
+        git checkout -b gh-pages origin/gh-pages || git checkout --orphan gh-pages
 
-      - name: Configure Git
-        run: |
-          git config --global user.name 'github-actions'
-          git config --global user.email 'github-actions@github.com'
+    - name: Copy new reports to gh-pages branch
+      run: |
+        cp -r reports/* .
 
-      - name: Checkout gh-pages branch
-        run: |
-          git fetch
-          git checkout gh-pages || git checkout --orphan gh-pages
-
-      - name: Copy reports to gh-pages branch
-        run: cp -r reports/* .
-
-      - name: Commit and push reports
-        run: |
-          git add .
-          git commit -m "Deploy Artillery reports for run ${{ github.run_id }}"
-          git push -u origin gh-pages
-
-      - name: Clean up
-        run: |
-          git checkout main
-          git branch -D gh-pages
+    - name: Commit and push reports to gh-pages branch
+      run: |
+        git add .
+        git commit -m "Add Artillery test reports"
+        git push origin gh-pages
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
