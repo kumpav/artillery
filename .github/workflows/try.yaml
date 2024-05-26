@@ -42,12 +42,18 @@ jobs:
       env:
         CI: true
 
+    - name: Stash changes
+      run: git stash
+
     - name: Checkout gh-pages branch
       run: |
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
         git config --global user.name "github-actions[bot]"
-        git fetch origin gh-pages:gh-pages
+        git fetch origin gh-pages
         git checkout gh-pages || git checkout --orphan gh-pages
+
+    - name: Apply stashed changes
+      run: git stash pop
 
     - name: Copy new reports to gh-pages branch
       run: |
